@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #f4f1e8;
+  --bg-raised: #fbf9f3;
+  --bg-overlay: rgba(20, 24, 32, 0.45);
+  --text: #1d2330;
+  --text-muted: #5a616f;
+  --border: #ddd6c4;
+  --accent: #87693c;
+  --accent-soft: #c2a36b33;
+  --sea: #14304b;
+}
+
+.dark {
+  --bg: #0c0f14;
+  --bg-raised: #12161e;
+  --bg-overlay: rgba(0, 0, 0, 0.6);
+  --text: #ece6da;
+  --text-muted: #9aa3b2;
+  --border: #262e3a;
+  --accent: #c2a36b;
+  --accent-soft: #c2a36b22;
+  --sea: #1c4063;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(1200px 600px at 80% -10%, color-mix(in srgb, var(--accent) 8%, transparent), transparent),
+    var(--bg);
+  color: var(--text);
+  font-family: 'Noto Sans SC', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .font-serif {
+  font-family: 'Noto Serif SC', Georgia, serif;
+}
+
+@layer components {
+  .card {
+    @apply rounded-xl border p-5;
+    background: var(--bg-raised);
+    border-color: var(--border);
+  }
+  .card-hover {
+    @apply transition-all duration-200 hover:-translate-y-0.5;
+  }
+  .card-hover:hover {
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px -18px rgba(0, 0, 0, 0.6);
+  }
+  .text-muted {
+    color: var(--text-muted);
+  }
+  .border-app {
+    border-color: var(--border);
+  }
+  .bg-app {
+    background: var(--bg);
+  }
+  .bg-raised {
+    background: var(--bg-raised);
+  }
+  .accent {
+    color: var(--accent);
+  }
+  .bg-accent-soft {
+    background: var(--accent-soft);
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors duration-150 disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #0c0f14;
+  }
+  .btn-primary:hover {
+    filter: brightness(1.1);
+  }
+  .btn-ghost {
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .btn-ghost:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .chip {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  }
+  .chip-neutral {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium border;
+    border-color: var(--border);
+    color: var(--text-muted);
+  }
+  .input {
+    @apply w-full rounded-lg px-3 py-2 text-sm outline-none;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .input:focus {
+    border-color: var(--accent);
+  }
+  .label-title {
+    @apply text-xs font-semibold uppercase tracking-wider;
+    color: var(--text-muted);
+  }
+  .prose-app {
+    line-height: 1.85;
+  }
+  .prose-app p {
+    margin: 0.5em 0;
+  }
+  .divider {
+    height: 1px;
+    background: var(--border);
+  }
+}
+
+/* 自定义滑块 */
+input[type='range'].trait-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  outline: none;
+}
+input[type='range'].trait-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--bg-raised);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+input[type='range'].trait-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--bg-raised);
+  cursor: pointer;
+}
+
+::selection {
+  background: var(--accent-soft);
+}
+
+/* 焦点可见性（无障碍） */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
